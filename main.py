@@ -149,5 +149,25 @@ def main(page: ft.Page):
 
     page.add(ft.Row([menubar]))
 
+def search_button():
+    def search():
+        pass
+
+def save_button():
+    def safe():
+        pass
+
+def exit_button():
+    def exit():
+        pass
+
+def data_export_button():
+    def data_export():
+        pass
+
+def data_import_button():
+    def data_import():
+        pass
+
 
 ft.app(main)
