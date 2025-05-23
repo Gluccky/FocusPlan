@@ -2,19 +2,50 @@ import flet as ft
 
 
 def main(page: ft.Page):
-    t = ft.Text(value="FocusPlan", color="green")
-    page.controls.append(t)
     page.update()
-    page.add(navigationbar)  
+    page.add(navigationbar, workspace, appbar)  
       
 
 navigationbar = ft.Column(
     controls=[
         ft.ElevatedButton(
-            text="sds",
+            text="notes",
+        bgcolor=ft.Colors.BLUE,
+        color=ft.Colors.WHITE
+        ),
+        ft.ElevatedButton(
+            text="calendar",
+        bgcolor=ft.Colors.BLUE,
+        color=ft.Colors.WHITE
+        ),
+        ft.ElevatedButton(
+            text="settings",
         bgcolor=ft.Colors.BLUE,
         color=ft.Colors.WHITE
         )
+    ]
+)
+
+workspace = ft.Row(
+        controls=[ft.Container(
+        content=ft.Text("workspace"),
+        bgcolor=ft.Colors.AMBER_100,
+        expand=True,
+        padding=20 
+    )],
+    expand=True
+)
+
+appbar = ft.AppBar(
+    title=ft.Row(
+        controls=[
+            ft.IconButton(ft.Icons.SEARCH)    
+        ],
+        alignment=ft.MainAxisAlignment.CENTER
+    ),
+    bgcolor=ft.Colors.GREY_100,
+    actions=[
+        ft.IconButton(ft.Icons.SETTINGS)
     ]
 )
 
