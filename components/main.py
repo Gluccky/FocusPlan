@@ -3,36 +3,44 @@ import flet as ft
 
 def main(page: ft.Page):
     page.update()
-    page.add(navigationbar, workspace, appbar)  
+    page.appbar=appbar
+    page.add(mainwindow)  
       
 
-navigationbar = ft.Column(
-    controls=[
-        ft.ElevatedButton(
-            text="notes",
-        bgcolor=ft.Colors.BLUE,
-        color=ft.Colors.WHITE
-        ),
-        ft.ElevatedButton(
-            text="calendar",
-        bgcolor=ft.Colors.BLUE,
-        color=ft.Colors.WHITE
-        ),
-        ft.ElevatedButton(
-            text="settings",
-        bgcolor=ft.Colors.BLUE,
-        color=ft.Colors.WHITE
-        )
-    ]
+
+navigationbar = ft.Container(
+        ft.Column(
+        controls=[
+            ft.ElevatedButton(
+                text="notes",
+            bgcolor=ft.Colors.BLUE,
+            color=ft.Colors.WHITE
+            ),
+            ft.ElevatedButton(
+                text="calendar",
+            bgcolor=ft.Colors.BLUE,
+            color=ft.Colors.WHITE
+            ),
+            ft.ElevatedButton(
+                text="settings",
+            bgcolor=ft.Colors.BLUE,
+            color=ft.Colors.WHITE
+            )
+        ]
+    ),
+    bgcolor=ft.Colors.WHITE30
+) 
+
+workspace = ft.Container(
+    bgcolor=ft.Colors.BROWN_300,
+    expand=True
 )
 
-workspace = ft.Row(
-        controls=[ft.Container(
-        content=ft.Text("workspace"),
-        bgcolor=ft.Colors.AMBER_100,
-        expand=True,
-        padding=20 
-    )],
+mainwindow = ft.Row(
+    controls=[
+        navigationbar,
+        workspace
+    ],
     expand=True
 )
 
