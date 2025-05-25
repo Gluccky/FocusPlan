@@ -1,12 +1,19 @@
 import flet as ft
+from components.notes import notespage
 
 
 def main(page: ft.Page):
+    global window_switch
     page.update()
     page.appbar=appbar
-    page.add(mainwindow)  
-      
-
+    page.add(mainwindow, notespage)  
+   
+    def window_switch(page):
+        mainwindow.controls.append(notespage)
+        notespage.visible=True 
+        if mainwindow.controls:  
+            mainwindow.controls.pop(0)  
+        page.update()
 
 navigationbar = ft.Container(
         ft.Column(
@@ -14,7 +21,8 @@ navigationbar = ft.Container(
             ft.ElevatedButton(
                 text="notes",
             bgcolor=ft.Colors.BLUE,
-            color=ft.Colors.WHITE
+            color=ft.Colors.WHITE,
+            on_click=window_switch()
             ),
             ft.ElevatedButton(
                 text="calendar",
@@ -33,7 +41,8 @@ navigationbar = ft.Container(
 
 workspace = ft.Container(
     bgcolor=ft.Colors.BROWN_300,
-    expand=True
+    expand=True,
+    visible=True
 )
 
 mainwindow = ft.Row(
@@ -80,4 +89,4 @@ def data_import_button():
         pass
 
 
-ft.app(main)
+ft.app(target=main)
