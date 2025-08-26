@@ -3,26 +3,45 @@ import flet as ft
 
 def notes_add(e: ft.ControlEvent):
         text = e.control.value.strip()
-        if text:
-            notespagenotes.controls.append(
-                ft.Container(
-                    content=ft.Text(text),
-                    bgcolor=ft.Colors.AMBER_100,
-                    padding=10,
-                    margin=5,
-                    border_radius=5
+        if notespagenotes.content == "notesroutine":
+            if text:
+                notesroutine.controls.append(
+                    ft.Container(
+                        content=ft.Text(text),
+                        bgcolor=ft.Colors.AMBER_100,
+                        padding=10,
+                        margin=5,
+                        border_radius=5
+                    )
                 )
-            )
+        elif notespagenotes.content == "notesimportant":
+            if text:
+                notesimportant.controls.append(
+                    ft.Container(
+                        content=ft.Text(text),
+                        bgcolor=ft.Colors.AMBER_100,
+                        padding=10,
+                        margin=5,
+                        border_radius=5
+                    )
+                )
             e.control.value = ""
+            e.control.update()
             notespagenotes.update()
+
+input_field = ft.TextField(
+        hint_text="Введите заметку и нажмите Enter",
+        on_submit=notes_add
+    )
 
 def notes_switch(name: str):
         if name == "notesroutine":
-            notesbuttons.content = notesroutine
+            notespagenotes.content = notesroutine
             notespage.update()
         elif name == "notesimportant":
-            notesbuttons.content = notesimportant
+            notespagenotes.content = notesimportant
             notespage.update()
+
 
 menubar = ft.Row(
     alignment=ft.MainAxisAlignment.CENTER,
@@ -40,36 +59,24 @@ menubar = ft.Row(
     ]
 )
 
-notesimportant = ft.Container(
-    content=ft.ElevatedButton(
-            text="addimportant",
-            bgcolor=ft.Colors.BLUE,
-            color=ft.Colors.WHITE,
-    )
+notesimportant = ft.Column(
+    
 )
 
-notesroutine = ft.Container(
-        content=ft.ElevatedButton(
-        on_click=lambda e: (notespagenotes.controls.append(ft.TextField(on_submit=notes_add())), notespage.update()),
-        text="addroutine",
-        bgcolor=ft.Colors.BLUE,
-        color=ft.Colors.WHITE,
-    )
+notesroutine = ft.Column(
+  
 )
 
-notesbuttons = ft.Container(
-     
-)
 
-notespagenotes = ft.Column(
-     expand=True
-     
+
+notespagenotes = ft.Container(
+     content=notesroutine
 )
 
 notespage = ft.Column(
     controls=[
         menubar,
-        notesbuttons,
+        input_field,
         notespagenotes
     ]
 )
