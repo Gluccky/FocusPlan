@@ -1,20 +1,43 @@
 import flet as ft
 
 
-def notes_add(e: ft.ControlEvent):
+def delete_note(note_container: ft.Container):
+        notespagenotes.controls.remove(note_container)
+        notespagenotes.update()
+
+def notes_add(e: ft.ControlEvent, ):
         text = e.control.value.strip()
-        if notespagenotes.content == "notesroutine":
+        if notespagenotes.content == notesroutine:
             if text:
-                notesroutine.controls.append(
-                    ft.Container(
-                        content=ft.Text(text),
-                        bgcolor=ft.Colors.AMBER_100,
-                        padding=10,
-                        margin=5,
-                        border_radius=5
-                    )
+                note = ft.Container(
+                     content=ft.Row(
+                          controls=[
+                                ft.Container(
+                                content=ft.Text(text),
+                                bgcolor=ft.Colors.AMBER_100,
+                                padding=10,
+                                margin=5,
+                                border_radius=5
+                                ),
+                                ft.IconButton(
+                                icon=ft.Icons.CLOSE,
+                                icon_color=ft.Colors.RED,
+                                tooltip="Удалить",
+                                on_click=lambda ev, note_ref=None: delete_note(note)
+                                )
+                          ]
+                        
+                    ),
+                    bgcolor=ft.Colors.AMBER_100,
+                    padding=10,
+                    margin=5,
+                    border_radius=5
                 )
-        elif notespagenotes.content == "notesimportant":
+                    
+                notesroutine.controls.append(note)
+                e.control.value = ""
+                notespage.update()
+        elif notespagenotes.content == notesimportant:
             if text:
                 notesimportant.controls.append(
                     ft.Container(
@@ -25,9 +48,9 @@ def notes_add(e: ft.ControlEvent):
                         border_radius=5
                     )
                 )
-            e.control.value = ""
+                e.control.value = ""
+                notespage.update()
             e.control.update()
-            notespagenotes.update()
 
 input_field = ft.TextField(
         hint_text="Введите заметку и нажмите Enter",
