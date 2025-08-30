@@ -1,17 +1,18 @@
 import flet as ft
+import datetime
+import calendar
 
 
-calendarpage = ft.Container(
-    bgcolor=ft.Colors.DEEP_PURPLE_400,
-    expand=True,
+calendarpage = ft.Column(
+    controls=[
+        
+    ]
 )
 
 
 
 
-def pins_add():
-    pass
 
-def pins_delete():
-    pass
+
+
 
