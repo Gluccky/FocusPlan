@@ -114,12 +114,15 @@ notespagenotes = ft.Container(
      content=notesroutine
 )
 
-notespage = ft.Column(
+notespage = ft.Container(
+    ft.Column(
     controls=[
         menubar,
         input_field,
         notespagenotes
-    ]
+    ],
+    ),
+    bgcolor=ft.Colors.BLUE_100,
 )
 
 

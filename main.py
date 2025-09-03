@@ -2,6 +2,7 @@ import flet as ft
 from components.focus_calendar import calendarpage
 from components.settings import settingspage
 from components.notes import notespage
+from components.homepage import homepage
 
 
 def main(page: ft.Page):
@@ -14,7 +15,10 @@ def main(page: ft.Page):
             page.update()
         elif name == "settingspage":
             workspace.content = settingspage
-            page.update()        
+            page.update() 
+        elif name == "homepage":
+            workspace.content = homepage
+            page.update()               
 
     navigationbar = ft.Container(
             ft.Column(
@@ -42,16 +46,9 @@ def main(page: ft.Page):
         bgcolor=ft.Colors.WHITE30
     ) 
 
-    global workspace 
     workspace = ft.Container(
-        ft.Column(
-            controls=[
-                ft.Text("Добро пожаловать", size=20)
-            ]
-        ),
-        bgcolor=ft.Colors.BROWN_300,
-        expand=True,
-        visible=True
+        content=homepage,
+    expand=True
     )
 
     mainwindow = ft.Row(
@@ -63,6 +60,10 @@ def main(page: ft.Page):
     )
 
     appbar = ft.AppBar(
+        leading=ft.IconButton(
+            ft.Icons.HOME,
+            on_click=lambda e: show_workspace("homepage")
+        ),
         title=ft.Row(
             controls=[
                 ft.IconButton(ft.Icons.SEARCH)    
