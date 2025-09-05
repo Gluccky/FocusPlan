@@ -31,6 +31,7 @@ def delete_note(note_container: ft.Container):
         notesimportant.controls.remove(note_container)
         notespagenotes.update()
 
+
 def notes_add(e: ft.ControlEvent, ):
         text = e.control.value.strip()
         if text:
@@ -38,6 +39,12 @@ def notes_add(e: ft.ControlEvent, ):
             note = ft.Container(
                   content=ft.Row(
                         controls=[
+                            ft.IconButton(
+                                icon=ft.Icons.RADIO_BUTTON_UNCHECKED_SHARP,
+                                icon_color=ft.Colors.GREEN_300,
+                                icon_size=40,
+                                tooltip="Yep"
+                                ),  
                             note_text,
                             ft.IconButton(
                                 icon=ft.Icons.EDIT,
@@ -54,7 +61,7 @@ def notes_add(e: ft.ControlEvent, ):
                         ]
                         
                 ),
-                bgcolor=ft.Colors.WHITE24,
+                bgcolor=ft.Colors.BLACK87,
                 alignment=ft.alignment.top_left,
                 padding=10,
                 margin=5,

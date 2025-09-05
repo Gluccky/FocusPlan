@@ -18,7 +18,8 @@ def main(page: ft.Page):
             page.update() 
         elif name == "homepage":
             workspace.content = homepage
-            page.update()               
+            page.update()             
+
 
     navigationbar = ft.Container(
             ft.Column(
